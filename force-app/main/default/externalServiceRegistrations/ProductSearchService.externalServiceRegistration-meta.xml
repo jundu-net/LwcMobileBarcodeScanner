@@ -1,0 +1,378 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ExternalServiceRegistration xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label>ProductSearchService</label>
+    <namedCredential>Y_Product_Seach</namedCredential>
+    <operations>
+        <active>true</active>
+        <name>itemsearch</name>
+    </operations>
+    <registrationProviderType>Custom</registrationProviderType>
+    <schema>{
+  &quot;swagger&quot;: &quot;2.0&quot;,
+  &quot;info&quot;: {
+    &quot;title&quot;: &quot;Yahoo! Product Search V3&quot;,
+    &quot;version&quot;: &quot;0.1.2&quot;
+  },
+  &quot;paths&quot;: {
+    &quot;/itemSearch&quot;: {
+      &quot;get&quot;: {
+        &quot;operationId&quot;: &quot;itemSearch&quot;,
+        &quot;produces&quot;: [
+          &quot;application/json&quot;
+        ],
+        &quot;parameters&quot;: [
+          {
+            &quot;in&quot;: &quot;query&quot;,
+            &quot;name&quot;: &quot;appid&quot;,
+            &quot;type&quot;: &quot;string&quot;,
+            &quot;required&quot;: true
+          },
+          {
+            &quot;in&quot;: &quot;query&quot;,
+            &quot;name&quot;: &quot;jan_code&quot;,
+            &quot;type&quot;: &quot;string&quot;
+          },
+          {
+            &quot;in&quot;: &quot;query&quot;,
+            &quot;name&quot;: &quot;results&quot;,
+            &quot;type&quot;: &quot;integer&quot;
+          },
+          {
+            &quot;in&quot;: &quot;query&quot;,
+            &quot;name&quot;: &quot;image_size&quot;,
+            &quot;type&quot;: &quot;integer&quot;,
+            &quot;enum&quot;: [
+              76,
+              106,
+              132,
+              146,
+              300,
+              600
+            ]
+          }
+        ],
+        &quot;responses&quot;: {
+          &quot;200&quot;: {
+            &quot;description&quot;: &quot;&quot;,
+            &quot;schema&quot;: {
+              &quot;$ref&quot;: &quot;#/definitions/Result&quot;
+            }
+          }
+        }
+      }
+    }
+  },
+  &quot;definitions&quot;: {
+    &quot;Result&quot;: {
+      &quot;type&quot;: &quot;object&quot;,
+      &quot;properties&quot;: {
+        &quot;totalResultsAvailable&quot;: {
+          &quot;type&quot;: &quot;integer&quot;
+        },
+        &quot;totalResultsReturned&quot;: {
+          &quot;type&quot;: &quot;integer&quot;
+        },
+        &quot;firstResultsPosition&quot;: {
+          &quot;type&quot;: &quot;integer&quot;
+        },
+        &quot;request&quot;: {
+          &quot;$ref&quot;: &quot;#/definitions/RequestType&quot;
+        },
+        &quot;hits&quot;: {
+          &quot;type&quot;: &quot;array&quot;,
+          &quot;items&quot;: {
+            &quot;$ref&quot;: &quot;#/definitions/HitsType&quot;
+          }
+        }
+      }
+    },
+    &quot;RequestType&quot;: {
+      &quot;type&quot;: &quot;object&quot;,
+      &quot;properties&quot;: {
+        &quot;query&quot;: {
+          &quot;type&quot;: &quot;string&quot;
+        }
+      }
+    },
+    &quot;HitsType&quot;: {
+      &quot;type&quot;: &quot;object&quot;,
+      &quot;properties&quot;: {
+        &quot;index&quot;: {
+          &quot;type&quot;: &quot;integer&quot;
+        },
+        &quot;name&quot;: {
+          &quot;type&quot;: &quot;string&quot;
+        },
+        &quot;description&quot;: {
+          &quot;type&quot;: &quot;string&quot;
+        },
+        &quot;headLine&quot;: {
+          &quot;type&quot;: &quot;string&quot;
+        },
+        &quot;inStock&quot;: {
+          &quot;type&quot;: &quot;boolean&quot;
+        },
+        &quot;url&quot;: {
+          &quot;type&quot;: &quot;string&quot;
+        },
+        &quot;code&quot;: {
+          &quot;type&quot;: &quot;string&quot;
+        },
+        &quot;condition&quot;: {
+          &quot;type&quot;: &quot;string&quot;,
+          &quot;enum&quot;: [
+            &quot;new&quot;,
+            &quot;used&quot;
+          ]
+        },
+        &quot;premiumPrice&quot;: {
+          &quot;type&quot;: &quot;integer&quot;
+        },
+        &quot;premiumDiscountType&quot;: {
+          &quot;type&quot;: &quot;string&quot;,
+          &quot;enum&quot;: [
+            &quot;normal&quot;,
+            &quot;original&quot;,
+            &quot;sale&quot;
+          ]
+        },
+        &quot;premiumDiscountRate&quot;: {
+          &quot;type&quot;: &quot;integer&quot;
+        },
+        &quot;imageId&quot;: {
+          &quot;type&quot;: &quot;string&quot;
+        },
+        &quot;image&quot;: {
+          &quot;$ref&quot;: &quot;#/definitions/ImageType&quot;
+        },
+        &quot;exImage&quot;: {
+          &quot;$ref&quot;: &quot;#/definitions/ExImageType&quot;
+        },
+        &quot;review&quot;: {
+          &quot;$ref&quot;: &quot;#/definitions/ReviewType&quot;
+        },
+        &quot;affiliateRate&quot;: {
+          &quot;type&quot;: &quot;number&quot;
+        },
+        &quot;price&quot;: {
+          &quot;type&quot;: &quot;integer&quot;
+        },
+        &quot;priceLabel&quot;: {
+          &quot;$ref&quot;: &quot;#/definitions/PriceLabelType&quot;
+        },
+        &quot;point&quot;: {
+          &quot;$ref&quot;: &quot;#/definitions/PointType&quot;
+        },
+        &quot;shipping&quot;: {
+          &quot;$ref&quot;: &quot;#/definitions/ShippingType&quot;
+        },
+        &quot;genreCategory&quot;: {
+          &quot;$ref&quot;: &quot;#/definitions/GenreCategoryType&quot;
+        },
+        &quot;parentGenreCategories&quot;: {
+          &quot;type&quot;: &quot;array&quot;,
+          &quot;items&quot;: {
+            &quot;$ref&quot;: &quot;#/definitions/GenreCategoryType&quot;
+          }
+        },
+        &quot;brand&quot;: {
+          &quot;$ref&quot;: &quot;#/definitions/BrandType&quot;
+        },
+        &quot;parentBrands&quot;: {
+          &quot;type&quot;: &quot;array&quot;,
+          &quot;items&quot;: {
+            &quot;$ref&quot;: &quot;#/definitions/BrandType&quot;
+          }
+        },
+        &quot;janCode&quot;: {
+          &quot;type&quot;: &quot;string&quot;
+        },
+        &quot;payment&quot;: {
+          &quot;type&quot;: &quot;string&quot;
+        },
+        &quot;releaseDate&quot;: {
+          &quot;type&quot;: &quot;string&quot;
+        },
+        &quot;seller&quot;: {
+          &quot;$ref&quot;: &quot;#/definitions/SellerType&quot;
+        },
+        &quot;delivery&quot;: {
+          &quot;$ref&quot;: &quot;#/definitions/DeliveryType&quot;
+        }
+      }
+    },
+    &quot;ImageType&quot;: {
+      &quot;type&quot;: &quot;object&quot;,
+      &quot;properties&quot;: {
+        &quot;small&quot;: {
+          &quot;type&quot;: &quot;string&quot;
+        },
+        &quot;medium&quot;: {
+          &quot;type&quot;: &quot;string&quot;
+        }
+      }
+    },
+    &quot;ExImageType&quot;: {
+      &quot;type&quot;: &quot;object&quot;,
+      &quot;properties&quot;: {
+        &quot;url&quot;: {
+          &quot;type&quot;: &quot;string&quot;
+        },
+        &quot;width&quot;: {
+          &quot;type&quot;: &quot;integer&quot;
+        },
+        &quot;height&quot;: {
+          &quot;type&quot;: &quot;integer&quot;
+        }
+      }
+    },
+    &quot;ReviewType&quot;: {
+      &quot;type&quot;: &quot;object&quot;,
+      &quot;properties&quot;: {
+        &quot;rate&quot;: {
+          &quot;type&quot;: &quot;number&quot;
+        },
+        &quot;count&quot;: {
+          &quot;type&quot;: &quot;integer&quot;
+        },
+        &quot;url&quot;: {
+          &quot;type&quot;: &quot;string&quot;
+        }
+      }
+    },
+    &quot;PriceLabelType&quot;: {
+      &quot;type&quot;: &quot;object&quot;,
+      &quot;properties&quot;: {
+        &quot;taxable&quot;: {
+          &quot;type&quot;: &quot;boolean&quot;
+        },
+        &quot;premiumPrice&quot;: {
+          &quot;type&quot;: &quot;integer&quot;
+        },
+        &quot;defaultPrice&quot;: {
+          &quot;type&quot;: &quot;integer&quot;
+        },
+        &quot;discountedPrice&quot;: {
+          &quot;type&quot;: &quot;integer&quot;
+        },
+        &quot;fixedPrice&quot;: {
+          &quot;type&quot;: &quot;integer&quot;
+        },
+        &quot;periodStart&quot;: {
+          &quot;type&quot;: &quot;integer&quot;
+        },
+        &quot;periodEnd&quot;: {
+          &quot;type&quot;: &quot;integer&quot;
+        }
+      }
+    },
+    &quot;PointType&quot;: {
+      &quot;type&quot;: &quot;object&quot;,
+      &quot;properties&quot;: {
+        &quot;amount&quot;: {
+          &quot;type&quot;: &quot;integer&quot;
+        },
+        &quot;times&quot;: {
+          &quot;type&quot;: &quot;integer&quot;
+        },
+        &quot;bonusAmount&quot;: {
+          &quot;type&quot;: &quot;integer&quot;
+        },
+        &quot;bonusTimes&quot;: {
+          &quot;type&quot;: &quot;integer&quot;
+        },
+        &quot;premiumAmount&quot;: {
+          &quot;type&quot;: &quot;integer&quot;
+        },
+        &quot;premiumTimes&quot;: {
+          &quot;type&quot;: &quot;integer&quot;
+        },
+        &quot;premiumBonusAmount&quot;: {
+          &quot;type&quot;: &quot;integer&quot;
+        },
+        &quot;premiumBonusTimes&quot;: {
+          &quot;type&quot;: &quot;integer&quot;
+        }
+      }
+    },
+    &quot;ShippingType&quot;: {
+      &quot;type&quot;: &quot;object&quot;,
+      &quot;properties&quot;: {
+        &quot;name&quot;: {
+          &quot;type&quot;: &quot;string&quot;
+        },
+        &quot;code&quot;: {
+          &quot;type&quot;: &quot;integer&quot;
+        }
+      }
+    },
+    &quot;GenreCategoryType&quot;: {
+      &quot;type&quot;: &quot;object&quot;,
+      &quot;properties&quot;: {
+        &quot;id&quot;: {
+          &quot;type&quot;: &quot;integer&quot;
+        },
+        &quot;name&quot;: {
+          &quot;type&quot;: &quot;string&quot;
+        },
+        &quot;depth&quot;: {
+          &quot;type&quot;: &quot;integer&quot;
+        }
+      }
+    },
+    &quot;BrandType&quot;: {
+      &quot;type&quot;: &quot;object&quot;,
+      &quot;properties&quot;: {
+        &quot;id&quot;: {
+          &quot;type&quot;: &quot;integer&quot;
+        },
+        &quot;name&quot;: {
+          &quot;type&quot;: &quot;string&quot;
+        }
+      }
+    },
+    &quot;SellerType&quot;: {
+      &quot;type&quot;: &quot;object&quot;,
+      &quot;properties&quot;: {
+        &quot;sellerId&quot;: {
+          &quot;type&quot;: &quot;string&quot;
+        },
+        &quot;name&quot;: {
+          &quot;type&quot;: &quot;string&quot;
+        },
+        &quot;url&quot;: {
+          &quot;type&quot;: &quot;string&quot;
+        },
+        &quot;isBestSeller&quot;: {
+          &quot;type&quot;: &quot;boolean&quot;
+        },
+        &quot;isPMallSeller&quot;: {
+          &quot;type&quot;: &quot;boolean&quot;
+        },
+        &quot;review&quot;: {
+          &quot;$ref&quot;: &quot;#/definitions/ReviewType&quot;
+        },
+        &quot;imageId&quot;: {
+          &quot;type&quot;: &quot;string&quot;
+        }
+      }
+    },
+    &quot;DeliveryType&quot;: {
+      &quot;type&quot;: &quot;object&quot;,
+      &quot;properties&quot;: {
+        &quot;area&quot;: {
+          &quot;type&quot;: &quot;string&quot;
+        },
+        &quot;deadLine&quot;: {
+          &quot;type&quot;: &quot;integer&quot;
+        },
+        &quot;day&quot;: {
+          &quot;type&quot;: &quot;integer&quot;
+        }
+      }
+    }
+  }
+}</schema>
+    <schemaType>OpenApi</schemaType>
+    <status>Complete</status>
+</ExternalServiceRegistration>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CompactLayout xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>ScandResultCompactLayout</fullName>
+    <fields>Name</fields>
+    <fields>JAN_Code__c</fields>
+    <fields>ProductName__c</fields>
+    <fields>ProductImage__c</fields>
+    <fields>HeadLine__c</fields>
+    <fields>Status__c</fields>
+    <label>スキャン結果コンパクトレイアウト</label>
+</CompactLayout>
